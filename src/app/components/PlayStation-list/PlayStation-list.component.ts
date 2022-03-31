@@ -22,10 +22,9 @@ import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-students-list',
-  templateUrl: './nintendo-list.component.html'
+  templateUrl: './PlayStation-list.component.html'
   
 })
-
 export class StudentsListComponent implements OnInit {
   StudentData: any = [];
   dataSource: MatTableDataSource<Student>;
