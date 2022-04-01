@@ -33,6 +33,7 @@ import { AppComponent } from './app.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { EditStudentComponent } from './components/edit-student/edit-student.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
+import { PCListComponent } from './components/PC-list/PC-list.component';
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -53,7 +54,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'add-student' },
   { path: 'add-student', component: AddStudentComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
-  { path: 'students-list', component: StudentsListComponent }
+  { path: 'students-list', component: StudentsListComponent },
+  { path: 'PC-list', component: PCListComponent }
 ];
 
 /*
@@ -68,7 +70,8 @@ const routes: Routes = [
     AppComponent,
     AddStudentComponent,
     EditStudentComponent,
-    StudentsListComponent
+    StudentsListComponent,
+    PCListComponent
   ],
   imports: [
     BrowserAnimationsModule,

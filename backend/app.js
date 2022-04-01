@@ -21,6 +21,7 @@ mongoose.connect(dataBaseConfig.db, {
 
 // Set up express js port
 const studentRoute = require('./routes/student.route')
+const PCRoute = require('./routes/PC.route')
 
 const app = express();
 app.use(bodyParser.json());
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-mat
 
 // RESTful API root
 app.use('/api', studentRoute)
+app.use('/api', PCRoute)
 
 // PORT
 const port = process.env.PORT || 8000;

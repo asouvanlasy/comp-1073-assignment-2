@@ -91,6 +91,7 @@
 //--from github repo
 import { Injectable } from '@angular/core';
 import { Student } from './student';
+import { PC } from './PC';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
@@ -120,20 +121,8 @@ export class ApiService {
     return this.http.get(`${this.endpoint}`);
   }
 
-  // // Get student
-  // GetStudent(id: any): Observable<any> {
-  //   let API_URL = `${this.endpoint}/read-student/${id}`;
-  //   return this.http.get(API_URL, { headers: this.headers })
-  //     .pipe(
-  //       map((res: Response) => {
-  //         return res ? res : {}
-  //       }),
-  //       catchError(this.errorMgmt)
-  //     )
-  // }
 
-
-  //  // Get student
+  // Get student
   GetStudent(id: any): Observable<any> {
     let API_URL = `${this.endpoint}/read-student/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
@@ -157,6 +146,34 @@ export class ApiService {
   // Delete student
   DeleteStudent(id: any): Observable<any> {
     var API_URL = `${this.endpoint}/delete-student/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  //PC functions
+   // Get all students
+   GetPCs() {
+    return this.http.get(`${this.endpoint}`);
+  }
+
+
+  // Get student
+  GetPC(id: any): Observable<any> {
+    let API_URL = `${this.endpoint}/read-PC/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map(res => { 
+          return res || {} 
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
+
+  // Delete PC
+  DeletePC(id: any): Observable<any> {
+    var API_URL = `${this.endpoint}/delete-PC/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)

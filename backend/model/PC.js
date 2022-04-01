@@ -22,4 +22,4 @@ let PC = new Schema({
   collection: 'PC'
 })
 
-module.exports = mongoose.model('Student', Student)
+module.exports = mongoose.model('PC', PC)
