@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NintendoListComponent } from './nintendo-list.component';
+import { AddNintendoComponent } from './add-nintendo.component';
 
-describe('NintendoListComponent', () => {
-  let component: NintendoListComponent;
-  let fixture: ComponentFixture<NintendoListComponent>;
+describe('AddNintendoComponent', () => {
+  let component: AddNintendoComponent;
+  let fixture: ComponentFixture<AddNintendoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NintendoListComponent ]
+      declarations: [ AddNintendoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NintendoListComponent);
+    fixture = TestBed.createComponent(AddNintendoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
