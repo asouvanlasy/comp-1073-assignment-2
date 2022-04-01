@@ -1,26 +1,22 @@
-const { Int32 } = require('mongodb');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema
 let Nintendo = new Schema({
-  Game: {
+  game: {
     type: String
   },
-  Dev: {
+  dev: {
     type: String
   },
-  Rating: {
+  system: {
     type: String
   },
-  Time: {
-    type: Int32
-  },
-  Players: {
-    type: Int32
+  release: {
+    type: Date
   }
 }, {
-  collection: 'Nintendo'
+  collection: 'nintendo'
 })
 
-module.exports = mongoose.model('Student', Student)
+module.exports = mongoose.model('Nintendo', Nintendo)

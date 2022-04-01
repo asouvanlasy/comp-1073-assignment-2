@@ -22,6 +22,9 @@ mongoose.connect(dataBaseConfig.db, {
 // Set up express js port
 const studentRoute = require('./routes/student.route')
 
+// Our express js ports
+const nintendoRoute = require('./routes/nintendo.route')
+
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -35,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-mat
 
 // RESTful API root
 app.use('/api', studentRoute)
+app.use('/api', nintendoRoute)
 
 // PORT
 const port = process.env.PORT || 8000;

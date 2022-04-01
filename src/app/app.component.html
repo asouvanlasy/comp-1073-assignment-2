@@ -1,7 +1,7 @@
 <!-- Setup a basic layout with Angular Material -->
 <!-- Toolbar -->
 <mat-toolbar color="primary" class="header">
-  <div>Student Records</div>
+  <div>COMP-1073 Group-3 MongoDB Records</div>
   <span class="nav-tool-items">
     <mat-icon (click)="sidenav.toggle()" class="hamburger">menu</mat-icon>
   </span>
@@ -18,13 +18,19 @@
       <a mat-list-item routerLinkActive="active" routerLink="/students-list">
         <mat-icon>format_list_bulleted</mat-icon> View Students
       </a>
+
+      <!-- Our newly added stuff -->
+
+      <a mat-list-item routerLinkActive="active" routerLink="/add-nintendo">
+        <mat-icon>add</mat-icon> Add Nintendo
+      </a>
       <a mat-list-item routerLinkActive="active" routerLink="/nintendo-list">
         <mat-icon>format_list_bulleted</mat-icon> View Nintendo
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="/add-student">
+      <a mat-list-item routerLinkActive="active" routerLink="/add-PC">
         <mat-icon>add</mat-icon> Add PC
       </a>
-      <a mat-list-item routerLinkActive="active" routerLink="/students-list">
+      <a mat-list-item routerLinkActive="active" routerLink="/PC-list">
         <mat-icon>format_list_bulleted</mat-icon> View PC
       </a>
     </mat-nav-list>
