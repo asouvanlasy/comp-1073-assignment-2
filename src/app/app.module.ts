@@ -30,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Our new imports
 import { NintendoListComponent } from './components/nintendo-list/nintendo-list.component';
 import { AddNintendoComponent } from './components/add-nintendo/add-nintendo.component';
+import { EditNintendoComponent } from './components/edit-nintendo/edit-nintendo.component';
 
 
 
@@ -38,12 +39,12 @@ const routes: Routes = [
   { path: 'add-student', component: AddStudentComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
   { path: 'students-list', component: StudentsListComponent },
-  { path: 'PC-list', component: PCListComponent }
-];
+  { path: 'PC-list', component: PCListComponent },
 
   // Our new routes
   //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
   { path: 'add-nintendo', component: AddNintendoComponent },
+  { path: 'edit-nintendo', component: EditNintendoComponent },
   { path: 'nintendo-list', component: NintendoListComponent }
 ];
 
@@ -53,10 +54,11 @@ const routes: Routes = [
     AddStudentComponent,
     EditStudentComponent,
     StudentsListComponent,
-    PCListComponent
+    PCListComponent,
 
     // Our new declarations
     AddNintendoComponent,
+    EditNintendoComponent,
     NintendoListComponent
   ],
   imports: [

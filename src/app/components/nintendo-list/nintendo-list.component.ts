@@ -23,7 +23,7 @@ export class NintendoListComponent implements OnInit {
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
       }, 0);
-    })    
+    })
   }
 
   ngOnInit() { }
@@ -36,5 +36,4 @@ export class NintendoListComponent implements OnInit {
       this.nintendoApi.DeleteNintendo(e._id).subscribe()
     }
   }
-
 }
