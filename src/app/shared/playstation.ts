@@ -1,5 +1,4 @@
-// export class Nintendo {
-export interface PlayStation {
+export interface Playstation {
     _id: String;
     game: String;
     dev: String;

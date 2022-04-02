@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema
-let PlayStation = new Schema({
+let Playstation = new Schema({
   game: {
     type: String
   },
@@ -19,4 +19,4 @@ let PlayStation = new Schema({
   collection: 'playstation'
 })
 
-module.exports = mongoose.model('PlayStation', PlayStation)
+module.exports = mongoose.model('Playstation', Playstation)

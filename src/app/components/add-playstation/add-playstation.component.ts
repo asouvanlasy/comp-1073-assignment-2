@@ -15,14 +15,14 @@ export interface Subject {
   styleUrls: ['./add-playstation.component.css']
 })
 
-export class AddPlayStationComponent implements OnInit {
+export class AddPlaystationComponent implements OnInit {
   visible = true;
   selectable = true;
   selected: Boolean = false;
   removable = true;
   addOnBlur = true;
   @ViewChild('chipList') chipList: any;
-  @ViewChild('resetPlayStationForm') myNgForm: any;
+  @ViewChild('resetPlaystationForm') myNgForm: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   playstationForm: FormGroup;
 
@@ -60,9 +60,9 @@ export class AddPlayStationComponent implements OnInit {
   }
 
   /* Submit book */
-  submitNintendoForm() {
+  submitPlaystationForm() {
     if (this.playstationForm.valid) {
-      this.playstationApi.AddPlayStation(this.playstationForm.value).subscribe(res => {
+      this.playstationApi.AddPlaystation(this.playstationForm.value).subscribe(res => {
         this.ngZone.run(() => this.router.navigateByUrl('/playstation-list'))
       });
     }

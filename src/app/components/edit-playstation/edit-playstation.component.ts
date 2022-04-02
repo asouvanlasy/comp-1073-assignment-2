@@ -15,14 +15,14 @@ export interface Subject {
   styleUrls: ['./edit-playstation.component.css']
 })
 
-export class EditPlayStationComponent implements OnInit {
+export class EditPlaystationComponent implements OnInit {
   visible = true;
   selectable = true;
   selected: Boolean = false;
   removable = true;
   addOnBlur = true;
   @ViewChild('chipList') chipList: any;
-  @ViewChild('resetPlayStationForm') myNgForm: any;
+  @ViewChild('resetPlaystationForm') myNgForm: any;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   playstationForm: FormGroup;
 
@@ -38,7 +38,7 @@ export class EditPlayStationComponent implements OnInit {
     private playstationApi: ApiService
   ) { 
     var id = this.actRoute.snapshot.paramMap.get('id');
-    this.playstationApi.GetPlayStation(id).subscribe(data => {
+    this.playstationApi.GetPlaystation(id).subscribe(data => {
       console.log(data.subjects)
       this.playstationForm = this.fb.group({
         game: [data.game, [Validators.required]],
@@ -73,12 +73,12 @@ export class EditPlayStationComponent implements OnInit {
   }
 
   /* Update book */
-  updatePlayStationForm() {
+  updatePlaystationForm() {
     console.log(this.playstationForm.value)
     var id = this.actRoute.snapshot.paramMap.get('id');
     if (window.confirm('Are you sure you want to update?')) {
-      this.playstationApi.UpdateNintendo(id, this.playstationForm.value).subscribe( res => {
-        this.ngZone.run(() => this.router.navigateByUrl('/playstation-list'))
+      this.playstationApi.UpdatePlaystation(id, this.playstationForm.value).subscribe( res => {
+        this.ngZone.run(() => this.router.navigateByUrl('/Playstation-list'))
       });
     }
   }

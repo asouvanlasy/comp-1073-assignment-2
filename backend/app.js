@@ -38,33 +38,13 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
+// PC const
 const PC = express();
 PC.use(bodyParser.json());
 PC.use(bodyParser.urlencoded({
   extended: false
 }));
 PC.use(cors());
-
-// This const is for nintendo
-const nintendo = express();
-nintendo.use(bodyParser.json());
-nintendo.use(bodyParser.urlencoded({
-  extended: false
-}));
-nintendo.use(cors());
-
-// Setting up static directory
-app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-PC.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-
-// RESTful API root
-app.use('/api', studentRoute)
-PC.use('/api', PCRoute)
-nintendo.use('/api', nintendoRoute)
-playstation.use('/api', playstationRoute)
-
-
-
 
 // This const is for xbox
 const xbox = express();
@@ -74,6 +54,14 @@ xbox.use(bodyParser.urlencoded({
 }));
 xbox.use(cors());
 
+// This const is for nintendo
+const nintendo = express();
+nintendo.use(bodyParser.json());
+nintendo.use(bodyParser.urlencoded({
+  extended: false
+}));
+nintendo.use(cors());
+
 // const for PlayStation
 const playstation = express();
 playstation.use(bodyParser.json());
@@ -82,18 +70,27 @@ playstation.use(bodyParser.urlencoded({
 }));
 playstation.use(cors());
 
-// Setting up static directory
-xbox.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+// This const is for mobile
+const mobile = express();
+mobile.use(bodyParser.json());
+mobile.use(bodyParser.urlencoded({
+  extended: false
+}));
+mobile.use(cors());
 
 // RESTful API root
+app.use('/api', studentRoute)
+PC.use('/api', PCRoute)
+nintendo.use('/api', nintendoRoute)
+playstation.use('/api', playstationRoute)
 xbox.use('/api', xboxRoute)
 
-// RESTful API root
-playstation.use('/api', playstationRoute)
+// Setting up static directory
+app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+PC.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
-
-
-
+// Setting up static directory
+xbox.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
 // Setting up static directory
 nintendo.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
@@ -229,14 +226,6 @@ xbox.use(function (err, req, res, next) {
   res.status(err.statusCode).send(err.message);
 });
 
-
-// This const is for mobile
-const mobile = express();
-mobile.use(bodyParser.json());
-mobile.use(bodyParser.urlencoded({
-  extended: false
-}));
-mobile.use(cors());
 
 // Setting up static directory
 mobile.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));

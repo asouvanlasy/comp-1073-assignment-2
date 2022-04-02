@@ -1,4 +1,4 @@
-import { PlayStation } from '../../shared/playstation';
+import { Playstation } from '../../shared/playstation';
 import { ApiService } from '../../shared/api.service';
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,16 +10,16 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./playstation-list.component.css']
 })
 
-export class PlayStationListComponent implements OnInit {
-  PlayStationData: any = [];
-  dataSource: MatTableDataSource<PlayStation>;
+export class PlaystationListComponent implements OnInit {
+  PlaystationData: any = [];
+  dataSource: MatTableDataSource<Playstation>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['_id', 'game', 'dev', 'system', 'release', 'action'];
 
   constructor(private playstationApi: ApiService) {
-    this.playstationApi.GetNintendos().subscribe(data => {
-      this.PlayStationData = data;
-      this.dataSource = new MatTableDataSource<PlayStation>(this.PlayStationData);
+    this.playstationApi.GetPlaystations().subscribe(data => {
+      this.PlaystationData = data;
+      this.dataSource = new MatTableDataSource<Playstation>(this.PlaystationData);
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
       }, 0);
@@ -33,7 +33,7 @@ export class PlayStationListComponent implements OnInit {
       const data = this.dataSource.data;
       data.splice((this.paginator.pageIndex * this.paginator.pageSize) + index, 1);
       this.dataSource.data = data;
-      this.playstationApi.DeletePlayStation(e._id).subscribe()
+      this.playstationApi.DeletePlaystation(e._id).subscribe()
     }
   }
 }

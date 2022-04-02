@@ -16,15 +16,15 @@ import { EditXboxComponent } from './components/edit-xbox/edit-xbox.component';
 import { EditPCComponent } from './components/edit-PC/edit-PC.component';
 
 // Our new imports
-import { PlayStationListComponent } from './components/playStation-list/playstation-list.component';
-import { AddPlayStationComponent } from './components/add-playstation/add-playstation.component';
-import { EditPlayStationComponent } from './components/edit-playstation/edit-playstation.component';
+import { PlaystationListComponent } from './components/playstation-list/playstation-list.component';
+import { AddPlaystationComponent } from './components/add-playstation/add-playstation.component';
+import { EditPlaystationComponent } from './components/edit-playstation/edit-playstation.component';
 
 const routes: Routes = [
     // Our new routes
-    { path: 'playstation-list', component: PlayStationListComponent },
-    { path: 'add-playstation', component: AddPlayStationComponent },
-    { path: 'edit-playstation', component: EditPlayStationComponent },
+    { path: 'playstation-list', component: PlaystationListComponent },
+    { path: 'add-playstation', component: AddPlaystationComponent },
+    { path: 'edit-playstation', component: EditPlaystationComponent },
 
     { path: '', pathMatch: 'full', redirectTo: 'add-student' },
     { path: 'add-student', component: AddStudentComponent },

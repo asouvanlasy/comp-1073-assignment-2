@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 // Our imports
 import { Nintendo } from './nintendo';
-import { PlayStation } from './playstation';
+import { Playstation } from './playstation';
 import { Xbox } from './xbox';
 import { Mobile } from './mobile'
 
@@ -21,7 +21,7 @@ export class ApiService {
   endpoint: string = 'http://localhost:8000/api';
   endpointPC: string = 'http://localhost:8003/api';
   endpointNintendo: string = 'http://localhost:8001/api';
-  endpointPlayStation: string = 'http://localhost:8004/api';
+  endpointPlaystation: string = 'http://localhost:8004/api';
   endpointXbox: string = 'http://localhost:8002/api'
   endpointMobile: string = 'http://localhost:8005/api'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -130,13 +130,13 @@ export class ApiService {
 
 
 
-// PlayStation stuff
-GetPlayStations() {
-  return this.http.get(`${this.endpointPlayStation}`);
+// Playstation stuff
+GetPlaystations() {
+  return this.http.get(`${this.endpointPlaystation}`);
 }
 
-GetPlayStation(id: any): Observable<any> {
-  let API_URL = `${this.endpointPlayStation}/read-playstation/${id}`;
+GetPlaystation(id: any): Observable<any> {
+  let API_URL = `${this.endpointPlaystation}/read-playstation/${id}`;
   return this.http.get(API_URL, { headers: this.headers })
     .pipe(
       map(res => {
@@ -146,24 +146,24 @@ GetPlayStation(id: any): Observable<any> {
     )
 }
 
-AddPlayStation(data: PlayStation): Observable<any> {
-  let API_URL = `${this.endpointPlayStation}/add-playstation`;
+AddPlaystation(data: Playstation): Observable<any> {
+  let API_URL = `${this.endpointPlaystation}/add-playstation`;
   return this.http.post(API_URL, data)
     .pipe(
       catchError(this.errorMgmt)
     )
 }
 
-UpdatePlayStation(id: any, data: any): Observable<any> {
-  let API_URL = `${this.endpointPlayStation}/update-playstation/${id}`;
+UpdatePlaystation(id: any, data: any): Observable<any> {
+  let API_URL = `${this.endpointPlaystation}/update-playstation/${id}`;
   return this.http.put(API_URL, data, { headers: this.headers })
     .pipe(
       catchError(this.errorMgmt)
     )
 }
 
-DeletePlayStation(id: any): Observable<any> {
-  var API_URL = `${this.endpointPlayStation}/delete-PlayStation/${id}`;
+DeletePlaystation(id: any): Observable<any> {
+  var API_URL = `${this.endpointPlaystation}/delete-playstation/${id}`;
   return this.http.delete(API_URL)
     .pipe(
       catchError(this.errorMgmt)

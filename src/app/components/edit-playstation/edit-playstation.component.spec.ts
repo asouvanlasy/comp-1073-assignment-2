@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditPlayStationComponent } from './edit-playstation.component';
+import { EditPlaystationComponent } from './edit-playstation.component';
 
-describe('EditNintendoComponent', () => {
-  let component: EditPlayStationComponent;
-  let fixture: ComponentFixture<EditPlayStationComponent>;
+describe('EditPlaystationComponent', () => {
+  let component: EditPlaystationComponent;
+  let fixture: ComponentFixture<EditPlaystationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditPlayStationComponent ]
+      declarations: [ EditPlaystationComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditPlayStationComponent);
+    fixture = TestBed.createComponent(EditPlaystationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

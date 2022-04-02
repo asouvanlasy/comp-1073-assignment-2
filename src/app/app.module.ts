@@ -40,9 +40,9 @@ import { EditPCComponent } from './components/edit-PC/edit-PC.component';
 import { MobileListComponent } from './components/mobile-list/mobile-list.component';
 
 // Our new imports
-import { PlayStationListComponent } from './components/playStation-list/playstation-list.component';
-import { AddPlayStationComponent } from './components/add-playstation/add-playstation.component';
-import { EditPlayStationComponent } from './components/edit-playstation/edit-playstation.component';
+import { PlaystationListComponent } from './components/playstation-list/playstation-list.component';
+import { AddPlaystationComponent } from './components/add-playstation/add-playstation.component';
+import { EditPlaystationComponent } from './components/edit-playstation/edit-playstation.component';
 
 
 
@@ -62,9 +62,9 @@ const routes: Routes = [
 
     
   //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
-  { path: 'add-playstation', component: AddPlayStationComponent },
-  { path: 'edit-playstation', component: EditPlayStationComponent },
-  { path: 'playstation-list', component: PlayStationListComponent },
+  { path: 'add-playstation', component: AddPlaystationComponent },
+  { path: 'edit-playstation', component: EditPlaystationComponent },
+  { path: 'playstation-list', component: PlaystationListComponent },
   
   // pc
   { path: 'add-PC', component: AddPCComponent },
@@ -106,6 +106,11 @@ const routes: Routes = [
 
     // mobile
     MobileListComponent,
+
+    // playstation
+    PlaystationListComponent,
+    EditPlaystationComponent,
+    AddPlaystationComponent
   ],
   imports: [
     BrowserAnimationsModule,

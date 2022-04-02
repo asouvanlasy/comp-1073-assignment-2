@@ -2,12 +2,12 @@ const express = require('express');
 const app = express();
 const playstationRoute = express.Router();
 
-// Nintendo model
-let PlayStation = require('../model/PlayStation');
+// Playstation model
+let Playstation = require('../model/Playstation');
 
-// Add Nintendo
+// Add Playstation
 playstationRoute.route('/add-playstation').post((req, res, next) => {
-    PlayStation.create(req.body, (error, data) => {
+    Playstation.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -16,9 +16,9 @@ playstationRoute.route('/add-playstation').post((req, res, next) => {
     })
 });
 
-// Get all nintendo
+// Get all playstation
 playstationRoute.route('/').get((req, res) => {
-    PlayStation.find((error, data) => {
+    Playstation.find((error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -27,9 +27,9 @@ playstationRoute.route('/').get((req, res) => {
     })
 })
 
-// Get single nintendo
+// Get single playstation
 playstationRoute.route('/read-playstation/:id').get((req, res) => {
-    PlayStation.findById(req.params.id, (error, data) => {
+    Playstation.findById(req.params.id, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -39,9 +39,9 @@ playstationRoute.route('/read-playstation/:id').get((req, res) => {
 })
 
 
-// Update nintendo
+// Update playstation
 playstationRoute.route('/update-playstation/:id').put((req, res, next) => {
-    PlayStation.findByIdAndUpdate(req.params.id, {
+    Playstation.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, (error, data) => {
         if (error) {
@@ -49,14 +49,14 @@ playstationRoute.route('/update-playstation/:id').put((req, res, next) => {
             return next(error);
         } else {
             res.json(data)
-            console.log('PlayStation successfully updated!')
+            console.log('Playstation successfully updated!')
         }
     })
 })
 
-// Delete nintendo
+// Delete playstation
 playstationRoute.route('/delete-playstation/:id').delete((req, res, next) => {
-    PlayStation.findByIdAndRemove(req.params.id, (error, data) => {
+    Playstation.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error);
         } else {
