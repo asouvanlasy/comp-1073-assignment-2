@@ -26,6 +26,8 @@ const PCRoute = require('./routes/PC.route')
 // Our express js ports
 const nintendoRoute = require('./routes/nintendo.route')
 
+// This const is for student
+// We need to add our own app var
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -40,19 +42,38 @@ PC.use(bodyParser.urlencoded({
 }));
 PC.use(cors());
 
+// This const is for nintendo
+const nintendo = express();
+nintendo.use(bodyParser.json());
+nintendo.use(bodyParser.urlencoded({
+  extended: false
+}));
+nintendo.use(cors());
+
 // Setting up static directory
 app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 PC.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
-
 // RESTful API root
 app.use('/api', studentRoute)
 PC.use('/api', PCRoute)
-app.use('/api', nintendoRoute)
+nintendo.use('/api', nintendoRoute)
+
+
+
+
+
+
+// Setting up static directory
+nintendo.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+
+// RESTful API root
+nintendo.use('/api', nintendoRoute)
+
 
 // PORT
 const port = process.env.PORT || 8000;
-const PCport = process.env.PORT || 8003;
+
 
 app.listen(port, () => {
   console.log('Connected to port ' + port)
@@ -72,21 +93,26 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
 });
 
-// error handler
 app.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
 });
 
+
+
 //PC ports---------------------------
-PC.listen(port, () => {
-  console.log('Connected to port ' + port)
+const PCport = process.env.PORT || 8003;
+
+PC.listen(PCport, () => {
+  console.log('Connected to port ' + PCport)
 })
 
 // Find 404 and hand over to error handler
-PC.use((req, res, next) => {
-  next(createError(404));
+PC.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
 });
 
 // Index Route
@@ -98,8 +124,33 @@ PC.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
 });
 
+PC.use((req, res, next) => {
+  next(createError(404));
+});
+
+
+// Nintendo PORT
+const portNintendo = process.env.PORT || 8001;
+
+nintendo.listen(portNintendo, () => {
+  console.log('Connected to port ' + portNintendo)
+})
+
+// Find 404 and hand over to error handler
+nintendo.use((req, res, next) => {
+  next(createError(404));
+});
+
+nintendo.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+nintendo.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
 // error handler
-PC.use(function (err, req, res, next) {
+nintendo.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

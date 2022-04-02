@@ -1,13 +1,13 @@
 const express = require('express');
 const app = express();
-const nintendoRoute = express.Router();
+const playstationRoute = express.Router();
 
 // Nintendo model
-let Nintendo = require('../model/Nintendo');
+let PlayStation = require('../model/PlayStation');
 
 // Add Nintendo
-nintendoRoute.route('/add-nintendo').post((req, res, next) => {
-    Nintendo.create(req.body, (error, data) => {
+playstationRoute.route('/add-PlayStation').post((req, res, next) => {
+    PlayStation.create(req.body, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -17,8 +17,8 @@ nintendoRoute.route('/add-nintendo').post((req, res, next) => {
 });
 
 // Get all nintendo
-nintendoRoute.route('/').get((req, res) => {
-    Nintendo.find((error, data) => {
+playstationRoute.route('/').get((req, res) => {
+    PlayStation.find((error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -28,8 +28,8 @@ nintendoRoute.route('/').get((req, res) => {
 })
 
 // Get single nintendo
-nintendoRoute.route('/read-nintendo/:id').get((req, res) => {
-    Nintendo.findById(req.params.id, (error, data) => {
+playstationRoute.route('/read-playstation/:id').get((req, res) => {
+    PlayStation.findById(req.params.id, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -40,8 +40,8 @@ nintendoRoute.route('/read-nintendo/:id').get((req, res) => {
 
 
 // Update nintendo
-nintendoRoute.route('/update-nintendo/:id').put((req, res, next) => {
-    Nintendo.findByIdAndUpdate(req.params.id, {
+playstationRoute.route('/update-playstation/:id').put((req, res, next) => {
+    PlayStation.findByIdAndUpdate(req.params.id, {
         $set: req.body
     }, (error, data) => {
         if (error) {
@@ -49,14 +49,14 @@ nintendoRoute.route('/update-nintendo/:id').put((req, res, next) => {
             return next(error);
         } else {
             res.json(data)
-            console.log('Nintendo successfully updated!')
+            console.log('PlayStation successfully updated!')
         }
     })
 })
 
 // Delete nintendo
-nintendoRoute.route('/delete-nintendo/:id').delete((req, res, next) => {
-    Nintendo.findByIdAndRemove(req.params.id, (error, data) => {
+playstationRoute.route('/delete-playstation/:id').delete((req, res, next) => {
+    PlayStation.findByIdAndRemove(req.params.id, (error, data) => {
         if (error) {
             return next(error);
         } else {
@@ -67,4 +67,4 @@ nintendoRoute.route('/delete-nintendo/:id').delete((req, res, next) => {
     })
 })
 
-module.exports = nintendoRoute;
+module.exports = playstationRoute;

@@ -17,6 +17,7 @@ export class ApiService {
 
   endpoint: string = 'http://localhost:8000/api';
   endpointPC: string = 'http://localhost:8003/api';
+  endpointNintendo: string = 'http://localhost:8001/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -88,11 +89,11 @@ export class ApiService {
 
   // Nintendo stuff
   GetNintendos() {
-    return this.http.get(`${this.endpoint}`);
+    return this.http.get(`${this.endpointNintendo}`);
   }
 
   GetNintendo(id: any): Observable<any> {
-    let API_URL = `${this.endpoint}/read-nintendo/${id}`;
+    let API_URL = `${this.endpointNintendo}/read-nintendo/${id}`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map(res => {
@@ -103,7 +104,7 @@ export class ApiService {
   }
 
   AddNintendo(data: Nintendo): Observable<any> {
-    let API_URL = `${this.endpoint}/add-nintendo`;
+    let API_URL = `${this.endpointNintendo}/add-nintendo`;
     return this.http.post(API_URL, data)
       .pipe(
         catchError(this.errorMgmt)
@@ -111,7 +112,7 @@ export class ApiService {
   }
 
   UpdateNintendo(id: any, data: any): Observable<any> {
-    let API_URL = `${this.endpoint}/update-nintendo/${id}`;
+    let API_URL = `${this.endpointNintendo}/update-nintendo/${id}`;
     return this.http.put(API_URL, data, { headers: this.headers })
       .pipe(
         catchError(this.errorMgmt)
@@ -119,7 +120,7 @@ export class ApiService {
   }
 
   DeleteNintendo(id: any): Observable<any> {
-    var API_URL = `${this.endpoint}/delete-Nintendo/${id}`;
+    var API_URL = `${this.endpointNintendo}/delete-Nintendo/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)
@@ -170,4 +171,3 @@ export class ApiService {
   }
 
 }
-

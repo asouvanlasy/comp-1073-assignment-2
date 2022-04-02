@@ -14,7 +14,7 @@ export class NintendoListComponent implements OnInit {
   NintendoData: any = [];
   dataSource: MatTableDataSource<Nintendo>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['_id', 'game', 'dev', 'system', 'release'];
+  displayedColumns: string[] = ['_id', 'game', 'dev', 'system', 'release', 'action'];
 
   constructor(private nintendoApi: ApiService) {
     this.nintendoApi.GetNintendos().subscribe(data => {
@@ -23,7 +23,7 @@ export class NintendoListComponent implements OnInit {
       setTimeout(() => {
         this.dataSource.paginator = this.paginator;
       }, 0);
-    })    
+    })
   }
 
   ngOnInit() { }
@@ -36,5 +36,4 @@ export class NintendoListComponent implements OnInit {
       this.nintendoApi.DeleteNintendo(e._id).subscribe()
     }
   }
-
 }
