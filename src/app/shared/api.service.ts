@@ -9,6 +9,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 // Our imports
 import { Nintendo } from './nintendo';
 import { Xbox } from './xbox';
+import { Mobile } from './mobile'
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class ApiService {
   endpointPC: string = 'http://localhost:8003/api';
   endpointNintendo: string = 'http://localhost:8001/api';
   endpointXbox: string = 'http://localhost:8002/api'
+  endpointMobile: string = 'http://localhost:8005/api'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -198,6 +200,47 @@ export class ApiService {
   }
   DeleteXbox(id: any): Observable<any> {
     var API_URL = `${this.endpointXbox}/delete-Xbox/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+
+  // Mobile stuff
+  GetMobiles() {
+    return this.http.get(`${this.endpointMobile}`);
+  }
+
+  GetMobile(id: any): Observable<any> {
+    let API_URL = `${this.endpointMobile}/read-mobille/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map(res => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
+
+  AddMobile(data: Mobile): Observable<any> {
+    let API_URL = `${this.endpointMobile}/add-mobille`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  UpdateMobile(id: any, data: any): Observable<any> {
+    let API_URL = `${this.endpointMobile}/update-mobille/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  DeleteMobile(id: any): Observable<any> {
+    var API_URL = `${this.endpointMobile}/delete-mobille/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)

@@ -26,6 +26,7 @@ const PCRoute = require('./routes/PC.route')
 // Our express js ports
 const nintendoRoute = require('./routes/nintendo.route')
 const xboxRoute = require('./routes/xbox.route')
+const mobileRoute = require('./routes/mobile.route')
 
 // This const is for student
 // We need to add our own app var
@@ -195,6 +196,49 @@ xbox.get('*', (req, res) => {
 
 // error handler
 xbox.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+
+// This const is for mobile
+const mobile = express();
+mobile.use(bodyParser.json());
+mobile.use(bodyParser.urlencoded({
+  extended: false
+}));
+mobile.use(cors());
+
+// Setting up static directory
+mobile.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+
+// RESTful API root
+mobile.use('/api', mobileRoute)
+
+// Mobile PORT
+const portMobile = process.env.PORT || 8005;
+
+mobile.listen(portMobile, () => {
+  console.log('Connected to port ' + portMobile)
+})
+
+// Find 404 and hand over to error handler
+mobile.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Index Route
+mobile.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+mobile.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
+// error handler
+mobile.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

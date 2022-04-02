@@ -37,6 +37,7 @@ import { XboxListComponent } from './components/xbox-list/xbox-list.component';
 import { AddXboxComponent } from './components/add-xbox/add-xbox.component';
 import { EditXboxComponent } from './components/edit-xbox/edit-xbox.component';
 import { EditPCComponent } from './components/edit-PC/edit-PC.component';
+import { MobileListComponent } from './components/mobile-list/mobile-list.component';
 
 
 
@@ -45,23 +46,25 @@ const routes: Routes = [
   { path: 'add-student', component: AddStudentComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
   { path: 'students-list', component: StudentsListComponent },
+  
   // Our new routes
-  //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
-  { path: 'add-nintendo', component: AddNintendoComponent },
+  // nintendo
   { path: 'nintendo-list', component: NintendoListComponent },
-  { path: 'PC-list', component: PCListComponent },
-  { path: 'add-PC', component: AddPCComponent },
-  { path: 'PC-list', component: PCListComponent },
-
-  // Our new routes
-  //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
   { path: 'add-nintendo', component: AddNintendoComponent },
   { path: 'edit-nintendo', component: EditNintendoComponent },
-  { path: 'nintendo-list', component: NintendoListComponent },
+  
+  // pc
+  { path: 'add-PC', component: AddPCComponent },
+  { path: 'PC-list', component: PCListComponent },
+  { path: 'edit-PC', component: EditPCComponent },
+
+  // xbox
+  { path: 'xbox-list', component: XboxListComponent },
   { path: 'add-xbox', component: AddXboxComponent },
   { path: 'edit-xbox', component: EditXboxComponent },
-  { path: 'xbox-list', component: XboxListComponent },
-  { path: 'edit-PC', component: EditPCComponent }
+
+  // mobile
+  { path: 'mobile-list', component: MobileListComponent }
 ];
 
 
@@ -72,22 +75,24 @@ const routes: Routes = [
     EditStudentComponent,
     StudentsListComponent,
     
-
     // Our new declarations
-    AddNintendoComponent,
+    // nintendo
     NintendoListComponent,
-    PCListComponent,
-    AddPCComponent,
-    PCListComponent,
-
-    // Our new declarations
     AddNintendoComponent,
     EditNintendoComponent,
-    NintendoListComponent,
+
+    // pc
+    AddPCComponent,
+    PCListComponent,
+    EditPCComponent,
+
+    // xbox
     AddXboxComponent,
     EditXboxComponent,
     XboxListComponent,
-    EditPCComponent
+
+    // mobile
+    MobileListComponent,
   ],
   imports: [
     BrowserAnimationsModule,
