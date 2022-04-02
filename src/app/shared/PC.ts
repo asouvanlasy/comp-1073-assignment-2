@@ -5,4 +5,4 @@ export interface PC {
     Dev: String;
     System: string;
     Release: Date;
-    }
+}

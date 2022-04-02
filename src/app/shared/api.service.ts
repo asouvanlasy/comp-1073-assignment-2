@@ -84,11 +84,6 @@ export class ApiService {
     return throwError(errorMessage);
   }
 
-
-
-
-
-
   // Nintendo stuff
   GetNintendos() {
     return this.http.get(`${this.endpointNintendo}`);
@@ -163,7 +158,7 @@ export class ApiService {
       )
   }
 
-  AddPC(data: Nintendo): Observable<any> {
+  AddPC(data: PC): Observable<any> {
     let API_URL = `${this.endpointPC}/add-PC`;
     return this.http.post(API_URL, data)
       .pipe(
