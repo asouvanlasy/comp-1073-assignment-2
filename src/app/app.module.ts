@@ -33,6 +33,9 @@ import { AddNintendoComponent } from './components/add-nintendo/add-nintendo.com
 import { PCListComponent } from './components/PC-list/PC-list.component';
 import { AddPCComponent } from './components/add-PC/add-PC.component';
 import { EditNintendoComponent } from './components/edit-nintendo/edit-nintendo.component';
+import { XboxListComponent } from './components/xbox-list/xbox-list.component';
+import { AddXboxComponent } from './components/add-xbox/add-xbox.component';
+import { EditXboxComponent } from './components/edit-xbox/edit-xbox.component';
 
 
 
@@ -53,7 +56,10 @@ const routes: Routes = [
   //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
   { path: 'add-nintendo', component: AddNintendoComponent },
   { path: 'edit-nintendo', component: EditNintendoComponent },
-  { path: 'nintendo-list', component: NintendoListComponent }
+  { path: 'nintendo-list', component: NintendoListComponent },
+  { path: 'add-xbox', component: AddXboxComponent },
+  { path: 'edit-xbox', component: EditXboxComponent },
+  { path: 'xbox-list', component: XboxListComponent },
 ];
 
 
@@ -75,7 +81,10 @@ const routes: Routes = [
     // Our new declarations
     AddNintendoComponent,
     EditNintendoComponent,
-    NintendoListComponent
+    NintendoListComponent,
+    AddXboxComponent,
+    EditXboxComponent,
+    XboxListComponent
   ],
   imports: [
     BrowserAnimationsModule,
