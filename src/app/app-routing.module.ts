@@ -13,6 +13,7 @@ import { EditNintendoComponent } from './components/edit-nintendo/edit-nintendo.
 import { XboxListComponent } from './components/xbox-list/xbox-list.component';
 import { AddXboxComponent } from './components/add-xbox/add-xbox.component';
 import { EditXboxComponent } from './components/edit-xbox/edit-xbox.component';
+import { EditPCComponent } from './components/edit-PC/edit-PC.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'add-student' },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'edit-nintendo', component: EditNintendoComponent },
   { path: 'xbox-list', component: XboxListComponent },
   { path: 'add-xbox', component: AddXboxComponent },
-  { path: 'edit-xbox', component: EditXboxComponent }
+  { path: 'edit-xbox', component: EditXboxComponent },
+  { path: 'edit-PC', component: EditPCComponent }
 ];
 
 @NgModule({
