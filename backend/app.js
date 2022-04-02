@@ -25,6 +25,7 @@ const PCRoute = require('./routes/PC.route')
 
 // Our express js ports
 const nintendoRoute = require('./routes/nintendo.route')
+const playstationRoute = require('./routes/playstation.route')
 
 // This const is for student
 // We need to add our own app var
@@ -52,11 +53,22 @@ nintendo.use(bodyParser.urlencoded({
 }));
 nintendo.use(cors());
 
+// const for PlayStation
+const playstation = express();
+playstation.use(bodyParser.json());
+playstation.use(bodyParser.urlencoded({
+  extended: false
+}));
+playstation.use(cors());
+
 // Setting up static directory
 nintendo.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
 // RESTful API root
 nintendo.use('/api', nintendoRoute)
+
+// RESTful API root
+playstation.use('/api', playstationRoute)
 
 
 
@@ -114,6 +126,36 @@ nintendo.get('*', (req, res) => {
 
 // error handler
 nintendo.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+
+
+// PlayStation PORT
+const portPlayStation = process.env.PORT || 8004;
+
+playstation.listen(portPlayStation, () => {
+  console.log('Connected to port ' + portPlayStation)
+})
+
+// Find 404 and hand over to error handler
+playstation.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Index Route
+playstation.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+playstation.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
+// error handler
+playstation.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

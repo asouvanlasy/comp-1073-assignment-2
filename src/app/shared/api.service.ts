@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 // Our imports
 import { Nintendo } from './nintendo';
+import { PlayStation } from './playstation';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ApiService {
 
   endpoint: string = 'http://localhost:8000/api';
   endpointNintendo: string = 'http://localhost:8001/api';
+  endpointPlayStation: string = 'http://localhost:8004/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -152,5 +154,47 @@ export class ApiService {
       .pipe(
         catchError(this.errorMgmt)
       )
-  }
+      }
+
+
+
+// PlayStation stuff
+GetPlayStations() {
+  return this.http.get(`${this.endpointPlayStation}`);
+}
+
+GetPlayStation(id: any): Observable<any> {
+  let API_URL = `${this.endpointPlayStation}/read-playstation/${id}`;
+  return this.http.get(API_URL, { headers: this.headers })
+    .pipe(
+      map(res => {
+        return res || {}
+      }),
+      catchError(this.errorMgmt)
+    )
+}
+
+AddPlayStation(data: PlayStation): Observable<any> {
+  let API_URL = `${this.endpointPlayStation}/add-playstation`;
+  return this.http.post(API_URL, data)
+    .pipe(
+      catchError(this.errorMgmt)
+    )
+}
+
+UpdatePlayStation(id: any, data: any): Observable<any> {
+  let API_URL = `${this.endpointPlayStation}/update-playstation/${id}`;
+  return this.http.put(API_URL, data, { headers: this.headers })
+    .pipe(
+      catchError(this.errorMgmt)
+    )
+}
+
+DeletePlayStation(id: any): Observable<any> {
+  var API_URL = `${this.endpointPlayStation}/delete-PlayStation/${id}`;
+  return this.http.delete(API_URL)
+    .pipe(
+      catchError(this.errorMgmt)
+    )
+}
 }

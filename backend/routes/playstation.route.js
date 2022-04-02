@@ -6,7 +6,7 @@ const playstationRoute = express.Router();
 let PlayStation = require('../model/PlayStation');
 
 // Add Nintendo
-playstationRoute.route('/add-PlayStation').post((req, res, next) => {
+playstationRoute.route('/add-playstation').post((req, res, next) => {
     PlayStation.create(req.body, (error, data) => {
         if (error) {
             return next(error)

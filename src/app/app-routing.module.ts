@@ -10,6 +10,11 @@ import { NintendoListComponent } from './components/nintendo-list/nintendo-list.
 import { AddNintendoComponent } from './components/add-nintendo/add-nintendo.component';
 import { EditNintendoComponent } from './components/edit-nintendo/edit-nintendo.component';
 
+// Our new imports
+import { PlayStationListComponent } from './components/playStation-list/playstation-list.component';
+import { AddPlayStationComponent } from './components/add-playstation/add-playstation.component';
+import { EditPlayStationComponent } from './components/edit-playstation/edit-playstation.component';
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'add-student' },
   { path: 'add-student', component: AddStudentComponent },
@@ -21,6 +26,11 @@ const routes: Routes = [
   { path: 'nintendo-list', component: NintendoListComponent },
   { path: 'add-nintendo', component: AddNintendoComponent },
   { path: 'edit-nintendo', component: EditNintendoComponent }
+
+    // Our new routes
+    { path: 'playstation-list', component: PlayStationListComponent },
+    { path: 'add-playstation', component: AddPlayStationComponent },
+    { path: 'edit-playstation', component: EditPlayStationComponent }
 ];
 
 @NgModule({
