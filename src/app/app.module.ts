@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AddStudentComponent } from './components/add-student/add-student.component';
 import { EditStudentComponent } from './components/edit-student/edit-student.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
-import { PCListComponent } from './components/PC-list/PC-list.component';
+
 
 /* Angular material */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Our new imports
 import { NintendoListComponent } from './components/nintendo-list/nintendo-list.component';
 import { AddNintendoComponent } from './components/add-nintendo/add-nintendo.component';
-
+import { PCListComponent } from './components/PC-list/PC-list.component';
+import { AddPCComponent } from './components/add-PC/add-PC.component';
 
 
 const routes: Routes = [
@@ -38,14 +39,14 @@ const routes: Routes = [
   { path: 'add-student', component: AddStudentComponent },
   { path: 'edit-student/:id', component: EditStudentComponent },
   { path: 'students-list', component: StudentsListComponent },
-  { path: 'PC-list', component: PCListComponent }
-];
-
   // Our new routes
   //{ path: '', pathMatch: 'full', redirectTo: 'add-nintendo' },
   { path: 'add-nintendo', component: AddNintendoComponent },
-  { path: 'nintendo-list', component: NintendoListComponent }
+  { path: 'nintendo-list', component: NintendoListComponent },
+  { path: 'PC-list', component: PCListComponent },
+  { path: 'add-PC', component: AddPCComponent }
 ];
+
 
 @NgModule({
   declarations: [
@@ -53,11 +54,13 @@ const routes: Routes = [
     AddStudentComponent,
     EditStudentComponent,
     StudentsListComponent,
-    PCListComponent
+    
 
     // Our new declarations
     AddNintendoComponent,
-    NintendoListComponent
+    NintendoListComponent,
+    PCListComponent,
+    AddPCComponent
   ],
   imports: [
     BrowserAnimationsModule,

@@ -16,6 +16,7 @@ import { Nintendo } from './nintendo';
 export class ApiService {
 
   endpoint: string = 'http://localhost:8000/api';
+  endpointPC: string = 'http://localhost:8003/api';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -60,34 +61,6 @@ export class ApiService {
   // Delete student
   DeleteStudent(id: any): Observable<any> {
     var API_URL = `${this.endpoint}/delete-student/${id}`;
-    return this.http.delete(API_URL)
-      .pipe(
-        catchError(this.errorMgmt)
-      )
-  }
-
-  //PC functions
-   // Get all students
-   GetPCs() {
-    return this.http.get(`${this.endpoint}`);
-  }
-
-
-  // Get student
-  GetPC(id: any): Observable<any> {
-    let API_URL = `${this.endpoint}/read-PC/${id}`;
-    return this.http.get(API_URL, { headers: this.headers })
-      .pipe(
-        map(res => { 
-          return res || {} 
-        }),
-        catchError(this.errorMgmt)
-      )
-  }
-
-  // Delete PC
-  DeletePC(id: any): Observable<any> {
-    var API_URL = `${this.endpoint}/delete-PC/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)
@@ -153,4 +126,48 @@ export class ApiService {
       )
   }
 
+  //PC functions
+   GetPCs() {
+    return this.http.get(`${this.endpointPC}`);
+  }
+
+
+  // Get PC
+  GetPC(id: any): Observable<any> {
+    let API_URL = `${this.endpointPC}/read-PC/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map(res => { 
+          return res || {} 
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
+
+  AddPC(data: Nintendo): Observable<any> {
+    let API_URL = `${this.endpointPC}/add-PC`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  UpdatePC(id: any, data: any): Observable<any> {
+    let API_URL = `${this.endpointPC}/update-PC/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  // Delete PC
+  DeletePC(id: any): Observable<any> {
+    var API_URL = `${this.endpointPC}/delete-PC/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
 }
+

@@ -9,14 +9,11 @@ let PC = new Schema({
   Dev: {
     type: String
   },
-  Rating: {
+  System: {
     type: String
   },
-  Time: {
-    type: String
-  },
-  Player: {
-    type: String
+  Release: {
+    type: Date
   }
 }, {
   collection: 'PC'

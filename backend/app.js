@@ -33,17 +33,26 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
+const PC = express();
+PC.use(bodyParser.json());
+PC.use(bodyParser.urlencoded({
+  extended: false
+}));
+PC.use(cors());
+
 // Setting up static directory
 app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+PC.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
 
 // RESTful API root
 app.use('/api', studentRoute)
-app.use('/api', PCRoute)
+PC.use('/api', PCRoute)
 app.use('/api', nintendoRoute)
 
 // PORT
 const port = process.env.PORT || 8000;
+const PCport = process.env.PORT || 8003;
 
 app.listen(port, () => {
   console.log('Connected to port ' + port)
@@ -65,6 +74,32 @@ app.get('*', (req, res) => {
 
 // error handler
 app.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+//PC ports---------------------------
+PC.listen(port, () => {
+  console.log('Connected to port ' + port)
+})
+
+// Find 404 and hand over to error handler
+PC.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Index Route
+PC.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+PC.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
+// error handler
+PC.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

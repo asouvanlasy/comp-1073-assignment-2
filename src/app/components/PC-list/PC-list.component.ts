@@ -29,7 +29,7 @@ export class PCListComponent implements OnInit {
   PCData: any = [];
   dataSource: MatTableDataSource<PC>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['_id', 'Game', 'Dev', 'Rating', 'Time', 'Player'];
+  displayedColumns: string[] = ['_id', 'Game', 'Dev', 'System', 'Release', 'action'];
 
   constructor(private PCApi: ApiService) {
     this.PCApi.GetPCs().subscribe((data) => {
