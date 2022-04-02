@@ -26,6 +26,8 @@ const PCRoute = require('./routes/PC.route')
 // Our express js ports
 const nintendoRoute = require('./routes/nintendo.route')
 const playstationRoute = require('./routes/playstation.route')
+const xboxRoute = require('./routes/xbox.route')
+const mobileRoute = require('./routes/mobile.route')
 
 // This const is for student
 // We need to add our own app var
@@ -36,14 +38,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cors());
 
-// Setting up static directory
-app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
-
-// RESTful API root
-app.use('/api', studentRoute)
-app.use('/api', PCRoute)
-
-
+const PC = express();
+PC.use(bodyParser.json());
+PC.use(bodyParser.urlencoded({
+  extended: false
+}));
+PC.use(cors());
 
 // This const is for nintendo
 const nintendo = express();
@@ -52,6 +52,27 @@ nintendo.use(bodyParser.urlencoded({
   extended: false
 }));
 nintendo.use(cors());
+
+// Setting up static directory
+app.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+PC.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+
+// RESTful API root
+app.use('/api', studentRoute)
+PC.use('/api', PCRoute)
+nintendo.use('/api', nintendoRoute)
+playstation.use('/api', playstationRoute)
+
+
+
+
+// This const is for xbox
+const xbox = express();
+xbox.use(bodyParser.json());
+xbox.use(bodyParser.urlencoded({
+  extended: false
+}));
+xbox.use(cors());
 
 // const for PlayStation
 const playstation = express();
@@ -62,10 +83,10 @@ playstation.use(bodyParser.urlencoded({
 playstation.use(cors());
 
 // Setting up static directory
-nintendo.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+xbox.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
 
 // RESTful API root
-nintendo.use('/api', nintendoRoute)
+xbox.use('/api', xboxRoute)
 
 // RESTful API root
 playstation.use('/api', playstationRoute)
@@ -73,8 +94,17 @@ playstation.use('/api', playstationRoute)
 
 
 
+
+// Setting up static directory
+nintendo.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+
+// RESTful API root
+nintendo.use('/api', nintendoRoute)
+
+
 // PORT
 const port = process.env.PORT || 8000;
+
 
 app.listen(port, () => {
   console.log('Connected to port ' + port)
@@ -94,13 +124,40 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
 });
 
-// error handler
 app.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);
 });
 
+
+
+//PC ports---------------------------
+const PCport = process.env.PORT || 8003;
+
+PC.listen(PCport, () => {
+  console.log('Connected to port ' + PCport)
+})
+
+// Find 404 and hand over to error handler
+PC.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+// Index Route
+PC.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+PC.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
+PC.use((req, res, next) => {
+  next(createError(404));
+});
 
 
 // Nintendo PORT
@@ -115,7 +172,6 @@ nintendo.use((req, res, next) => {
   next(createError(404));
 });
 
-// Index Route
 nintendo.get('/', (req, res) => {
   res.send('invaild endpoint');
 });
@@ -145,17 +201,82 @@ playstation.use((req, res, next) => {
   next(createError(404));
 });
 
+// Xbox PORT
+const portXbox = process.env.PORT || 8002;
+
+xbox.listen(portXbox, () => {
+  console.log('Connected to port ' + portXbox)
+})
+
+// Find 404 and hand over to error handler
+xbox.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Index Route
+xbox.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+xbox.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
+});
+
+// error handler
+xbox.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+
+
+// This const is for mobile
+const mobile = express();
+mobile.use(bodyParser.json());
+mobile.use(bodyParser.urlencoded({
+  extended: false
+}));
+mobile.use(cors());
+
+// Setting up static directory
+mobile.use(express.static(path.join(__dirname, 'dist/angular8-meanstack-angular-material')));
+
+// RESTful API root
+mobile.use('/api', mobileRoute)
+
+// Mobile PORT
+const portMobile = process.env.PORT || 8005;
+
+mobile.listen(portMobile, () => {
+  console.log('Connected to port ' + portMobile)
+})
+
+// Find 404 and hand over to error handler
+mobile.use((req, res, next) => {
+  next(createError(404));
+});
+
 // Index Route
 playstation.get('/', (req, res) => {
   res.send('invaild endpoint');
 });
 
-playstation.get('*', (req, res) => {
+
+mobile.get('/', (req, res) => {
+  res.send('invaild endpoint');
+});
+
+mobile.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/angular8-meanstack-angular-material/index.html'));
 });
 
 // error handler
 playstation.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500;
+  res.status(err.statusCode).send(err.message);
+});
+mobile.use(function (err, req, res, next) {
   console.error(err.message);
   if (!err.statusCode) err.statusCode = 500;
   res.status(err.statusCode).send(err.message);

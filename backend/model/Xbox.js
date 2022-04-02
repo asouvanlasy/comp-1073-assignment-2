@@ -2,21 +2,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Define collection and schema
-let PC = new Schema({
-  Game: {
+let Xbox = new Schema({
+  game: {
     type: String
   },
-  Dev: {
+  dev: {
     type: String
   },
-  System: {
+  system: {
     type: String
   },
-  Release: {
+  release: {
     type: Date
   }
 }, {
-  collection: 'PC'
+  collection: 'xbox'
 })
 
-module.exports = mongoose.model('PC', PC)
+module.exports = mongoose.model('Xbox', Xbox)
