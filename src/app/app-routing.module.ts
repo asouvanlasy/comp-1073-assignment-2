@@ -9,6 +9,9 @@ import { PCListComponent } from './components/PC-list/PC-list.component';
 import { NintendoListComponent } from './components/nintendo-list/nintendo-list.component';
 import { AddNintendoComponent } from './components/add-nintendo/add-nintendo.component';
 import { EditNintendoComponent } from './components/edit-nintendo/edit-nintendo.component';
+import { XboxListComponent } from './components/xbox-list/xbox-list.component';
+import { AddXboxComponent } from './components/add-xbox/add-xbox.component';
+import { EditXboxComponent } from './components/edit-xbox/edit-xbox.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'add-student' },
@@ -20,7 +23,10 @@ const routes: Routes = [
   // Our new routes
   { path: 'nintendo-list', component: NintendoListComponent },
   { path: 'add-nintendo', component: AddNintendoComponent },
-  { path: 'edit-nintendo', component: EditNintendoComponent }
+  { path: 'edit-nintendo', component: EditNintendoComponent },
+  { path: 'xbox-list', component: XboxListComponent },
+  { path: 'add-xbox', component: AddXboxComponent },
+  { path: 'edit-xbox', component: EditXboxComponent }
 ];
 
 @NgModule({

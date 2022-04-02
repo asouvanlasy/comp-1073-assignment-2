@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 // Our imports
 import { Nintendo } from './nintendo';
+import { Xbox } from './xbox';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class ApiService {
 
   endpoint: string = 'http://localhost:8000/api';
   endpointNintendo: string = 'http://localhost:8001/api';
+  endpointXbox: string = 'http://localhost:8002/api'
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
@@ -148,6 +150,48 @@ export class ApiService {
 
   DeleteNintendo(id: any): Observable<any> {
     var API_URL = `${this.endpointNintendo}/delete-Nintendo/${id}`;
+    return this.http.delete(API_URL)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+
+
+  // Xbox stuff
+  GetXboxs() {
+    return this.http.get(`${this.endpointXbox}`);
+  }
+
+  GetXbox(id: any): Observable<any> {
+    let API_URL = `${this.endpointXbox}/read-xbox/${id}`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map(res => {
+          return res || {}
+        }),
+        catchError(this.errorMgmt)
+      )
+  }
+
+  AddXbox(data: Xbox): Observable<any> {
+    let API_URL = `${this.endpointXbox}/add-xbox`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  UpdateXbox(id: any, data: any): Observable<any> {
+    let API_URL = `${this.endpointXbox}/update-xbox/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      )
+  }
+
+  DeleteXbox(id: any): Observable<any> {
+    var API_URL = `${this.endpointXbox}/delete-Xbox/${id}`;
     return this.http.delete(API_URL)
       .pipe(
         catchError(this.errorMgmt)
