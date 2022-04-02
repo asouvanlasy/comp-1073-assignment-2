@@ -39,7 +39,7 @@ export class EditNintendoComponent implements OnInit {
   ) { 
     var id = this.actRoute.snapshot.paramMap.get('id');
     this.nintendoApi.GetNintendo(id).subscribe(data => {
-      //console.log(data.subjects)
+      console.log(data.subjects)
       this.nintendoForm = this.fb.group({
         game: [data.game, [Validators.required]],
         dev: [data.dev, [Validators.required]],
